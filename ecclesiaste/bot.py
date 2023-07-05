@@ -35,11 +35,11 @@ def tweet(message):
 class MentionListener(tweepy.StreamListener):
     def on_status(self, status):
         # Vérifier si le tweet est une mention
-        if status.in_reply_to_screen_name == 'votre_nom_compte_twitter':
+        if status.in_reply_to_screen_name == 'ecclesiaste_bot':
             # Extraire le message de la mention
             message = status.text
             # Supprimer le nom d'utilisateur de la mention
-            message = message.replace('@votre_nom_compte_twitter', '').strip()
+            message = message.replace('@ecclesiaste_bot', '').strip()
             # Appeler la fonction pour tweeter le message
             tweet(message)
 
@@ -47,7 +47,7 @@ mention_listener = MentionListener()
 mention_stream = tweepy.Stream(auth=api.auth, listener=mention_listener)
 
 # Démarrer l'écoute des mentions
-mention_stream.filter(track=['@votre_nom_compte_twitter'])  # Remplacez `votre_nom_compte_twitter` par votre nom d'utilisateur
+mention_stream.filter(track=['@ecclesiaste_bot'])  # Remplacez `votre_nom_compte_twitter` par votre nom d'utilisateur
 
 if __name__ == '__main__':
     app.run()
